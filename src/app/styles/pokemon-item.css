@@ -1,0 +1,9 @@
+.pokemon-name {
+  margin-top: auto;
+  margin-bottom: auto;
+  text-transform: capitalize;
+}
+
+.pokedex-item > .catch-button {
+  margin-left: auto;
+}

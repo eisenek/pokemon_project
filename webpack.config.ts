@@ -1,3 +1,4 @@
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import path from "path";
 import { Configuration } from "webpack";
@@ -11,11 +12,16 @@ const webpackConfig = (env): Configuration => ({
     },
   },
   output: {
-    path: path.join(__dirname, "/dist/"),
+    path: path.join(__dirname, "/dist"),
     filename: "bundle.js",
+    publicPath: "/assets",
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
@@ -27,7 +33,7 @@ const webpackConfig = (env): Configuration => ({
       },
     ],
   },
-  plugins: [new ForkTsCheckerWebpackPlugin()],
+  plugins: [new CleanWebpackPlugin(), new ForkTsCheckerWebpackPlugin()],
 });
 
 export default webpackConfig;
